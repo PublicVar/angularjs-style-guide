@@ -8,17 +8,22 @@
 	/**
 	 * Services that persists and retrieves TODOs from localStorage
 	*/
-	.factory('todoStorage', function () {
+	.factory('todoStorage', todoStorage);
+
+	function todoStorage(){
 		var STORAGE_ID = 'todos-angularjs-perf';
 
 		return {
-			get: function () {
-				return JSON.parse(localStorage.getItem(STORAGE_ID) || '[]');
-			},
-
-			put: function (todos) {
-				localStorage.setItem(STORAGE_ID, JSON.stringify(todos));
-			}
+			get: get,
+			put: put
 		};
-	});
+
+		function get(){
+			return JSON.parse(localStorage.getItem(STORAGE_ID) || '[]');
+		}
+
+		function put(todos){
+			localStorage.setItem(STORAGE_ID, JSON.stringify(todos));
+		}
+	}
 })();
