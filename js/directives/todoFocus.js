@@ -8,7 +8,11 @@
 	/**
 	 * Directive that places focus on the element it is applied to when the expression it binds to evaluates to true
 	 */
-	.directive('todoFocus', function ($timeout) {
+	.directive('todoFocus', todoFocus);
+
+	todoFocus.$inject = ['$timeout'];
+
+	function todoFocus($timeout){
 		return function (scope, elem, attrs) {
 			scope.$watch(attrs.todoFocus, function (newVal) {
 				if (newVal) {
@@ -18,5 +22,6 @@
 				}
 			});
 		};
-	});
+	}
+
 })();
